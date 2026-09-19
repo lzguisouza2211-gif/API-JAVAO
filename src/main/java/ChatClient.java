@@ -19,7 +19,7 @@ public class ChatClient extends WebSocketClient {
 
     @Override
     public void onMessage(String message) {
-        System.out.println("\n[Servidor recebeu]: " + message);
+        System.out.println("\n[Enviado]: " + message);
         System.out.print("Você: ");
     }
 

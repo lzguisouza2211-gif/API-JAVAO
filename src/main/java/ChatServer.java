@@ -2,6 +2,7 @@ import org.java_websocket.WebSocket;
 import org.java_websocket.handshake.ClientHandshake;
 import org.java_websocket.server.WebSocketServer;
 import java.net.InetSocketAddress;
+import java.util.Scanner;
 
 public class ChatServer extends WebSocketServer {
     public ChatServer(int port) {
@@ -36,12 +37,30 @@ public class ChatServer extends WebSocketServer {
     public void onStart() {
         System.out.println("========================================");
         System.out.println("Servidor WebSocket iniciado na porta 8080");
-        System.out.println("Aguardando conexões...");
+        System.out.println("Digite suas mensagens abaixo:");
         System.out.println("========================================");
     }
 
     public static void main(String[] args) {
-        ChatServer server = new ChatServer(8080);
-        server.start();
+        try {
+            ChatServer server = new ChatServer(8080);
+            server.start();
+
+            Scanner scanner = new Scanner(System.in);
+            System.out.print("Servidor: ");
+
+            while (true) {
+                String msg = scanner.nextLine();
+                if (msg.equals("sair")) {
+                    server.stop();
+                    break;
+                }
+                server.broadcast("[SERVIDOR]: " + msg);
+                System.out.print("Servidor: ");
+            }
+        } catch (Exception e) {
+            System.err.println("Erro no servidor: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 }

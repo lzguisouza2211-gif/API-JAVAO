@@ -10,7 +10,7 @@ import java.io.*;
 
 public class ChatClient extends WebSocketClient {
     private String token = null;
-    private String serverIp = "192.168.1.13";
+    private String serverIp = "192.168.1.6";
 
     public ChatClient(URI serverUri) {
         super(serverUri);

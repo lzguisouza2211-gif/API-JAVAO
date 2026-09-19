@@ -178,7 +178,7 @@ public class ChatServer extends WebSocketServer {
                     }
                     break;
                 }
-                server.broadcast("[SERVIDOR]: " + msg);
+                server.broadcast(msg);
                 System.out.print("Servidor: ");
             }
         } catch (Exception e) {
